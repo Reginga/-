@@ -1,0 +1,40 @@
+def heapsort(a):
+    build_max_heap(a)
+    for i in range(len(a) - 1, 0, -1):
+        a[0], a[i] = a[i], a[0]
+        max_heapify(a, index=0, size=i)
+ 
+def parent(i):
+    return (i - 1)//2
+ 
+def left(i):
+    return 2*i + 1
+ 
+def right(i):
+    return 2*i + 2
+ 
+def build_max_heap(a):
+    length = len(a)
+    start = parent(length - 1)
+    while start >= 0:
+        max_heapify(a, index=start, size=length)
+        start = start - 1
+ 
+def max_heapify(a, index, size):
+    l = left(index)
+    r = right(index)
+    if (l < size and a[l] > a[index]):
+        largest = l
+    else:
+        largest = index
+    if (r < size and a[r] > a[largest]):
+        largest = r
+    if (largest != index):
+        a[largest], a[index] = a[index], a[largest]
+        max_heapify(a, largest, size)
+ 
+a = list(map(int,input("Введите числа:").split()))
+print(a)
+heapsort(a)
+print("Отсортированный список",a)
+
