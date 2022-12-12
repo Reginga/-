@@ -1,0 +1,7 @@
+import random
+
+def massiv(n):
+    s = []*n
+    for i in range (n):
+        s.append (random.randint(0,1))
+    return s
